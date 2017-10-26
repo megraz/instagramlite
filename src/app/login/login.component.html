@@ -1,0 +1,12 @@
+<form *ngIf="!connected" (submit)="login()">
+    <label>username : </label>
+    <input type="text" [(ngModel)]="username" name="username">
+    <label>password : </label>
+    <input type="password" [(ngModel)]="password" name="password">
+    <button>login</button>
+</form>
+
+<section *ngIf="connected">
+    Salut machin
+    <button (click)="logout()">logout</button>
+</section>

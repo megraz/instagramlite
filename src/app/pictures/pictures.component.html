@@ -1,0 +1,7 @@
+<ul>
+    <li *ngFor="let pic of pictures | async">
+        <img [src]="pic.link" [alt]="pic.description">
+        <p>{{pic.description}}</p>
+        <p>Likes count : {{pic.likes.length}} </p>
+    </li>
+</ul>

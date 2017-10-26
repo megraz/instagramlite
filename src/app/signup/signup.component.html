@@ -1,0 +1,45 @@
+<form [formGroup]="formulaire" (submit)="signup()">
+    <mat-form-field>
+        <input matInput placeholder="Username" formControlName="username">
+        <mat-error *ngIf="formulaire.get('username').getError('required')">
+            Please enter a Username
+        </mat-error>
+        <mat-error *ngIf="formulaire.get('username').getError('unique')">
+            Username already taken
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Password" formControlName="password">
+        <mat-error *ngIf="formulaire.get('password').getError('required')">
+            Please enter a password
+        </mat-error>
+        <mat-error type="password" *ngIf="formulaire.get('password').getError('minlength')">
+            Password must be at least 3 characters
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input type="password" matInput placeholder="Confirm Password" formControlName="confirm">
+        <!-- ce truc marche pas je sais pas pourquoi -->
+        <mat-error *ngIf="formulaire.errors">
+            Passwords not matching
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Email Address" formControlName="mail">
+        <mat-error *ngIf="formulaire.get('username').getError('required')">
+            Please enter an Email Address
+        </mat-error>
+        <mat-error *ngIf="formulaire.get('mail').getError('email')">
+            Invalid email address
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Birthdate" formControlName="birthdate">
+        <mat-error *ngIf="formulaire.get('birthdate').errors">
+            Invalid date format
+        </mat-error>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <button mat-raised-button color="primary" [disabled]="formulaire.invalid">Sign in</button>
+</form>
